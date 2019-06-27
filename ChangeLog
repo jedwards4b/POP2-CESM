@@ -1,3 +1,17 @@
+Tag Creator: kauff
+Developers:  kauff
+Tag Date:    2019 June 27
+Tag Name:    ihesp-embedded-master_190627
+Tag Summary: add mods necessary for pop to be a subroutine of ocpl
+
+Testing: none
+
+source/io_types.F90
+drivers/cpl/ocn_comp_mct.F90.hide  -- connects to cpl
+drivers/cpl/pop_comp_mct.F90       -- connects to ocpl
+
+===============================================================================
+branch:   ihesp-embedded-master  -> pop is subroutine to ocpl (ocn coupler)
 ===============================================================================
 Tag Creator: klindsay
 Developers:  klindsay
