@@ -13,7 +13,7 @@
 !  and an io unit manager.
 !
 ! !REVISION HISTORY:
-!  SVN:$Id$
+!  SVN:$Id: io_types.F90 86350 2017-08-08 19:23:44Z jedwards $
 
 ! !USES:
 
@@ -3510,9 +3510,10 @@ contains
    end if
 #else
    if (my_task == master_task) then
-      stdout = shr_file_getUnit()
-      char_tmp = 'ocn_modelio.nml' // trim(inst_suffix)
-      call shr_file_setIO(char_tmp,stdout)
+   !  stdout = shr_file_getUnit()
+   !  char_tmp = 'ocn_modelio.nml' // trim(inst_suffix)
+   !  call shr_file_setIO(char_tmp,stdout)
+   !  BK: in RCESM context, stdout set by ocpl driver
       call shr_file_setLogUnit (stdout)
    end if
 #endif
