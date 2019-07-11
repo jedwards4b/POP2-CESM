@@ -990,6 +990,7 @@ contains
        endif
     else
        klev = 0
+    endif
 
     n=0
     do iblock = 1, nblocks_clinic
