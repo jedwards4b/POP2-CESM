@@ -1,3 +1,14 @@
+===============================================================================
+Tag Creator: kauff
+Developers:  kauff
+Tag Date:    2019 July 11
+Tag Name:    ihesp-embedded-master_190711
+Tag Summary: 
+
+Testing: With all non-ihesp code from cesm2.1.1: 
+         builds & runs on cheyenne, until roms blows up
+
+===============================================================================
 Tag Creator: kauff
 Developers:  kauff
 Tag Date:    2019 June 27
