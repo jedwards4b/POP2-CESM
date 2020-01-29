@@ -47,6 +47,17 @@
    real (r8), public ::       &! public for use in restart
       s_interior_interp_last   ! time last interpolation done
 
+   real (r8), dimension(:,:,:,:,:), allocatable, public :: &
+      S_INTERIOR_DATA  ! data to use for interior restoring
+
+   real (r8), dimension(:,:,:), allocatable, public :: &
+      S_RESTORE_RTAU   !  inverse restoring timescale for
+                       !  spatially-varying restoring
+
+   integer (int_kind), dimension(:,:,:), allocatable, public :: &
+      S_RESTORE_MAX_LEVEL ! maximum level for applying variable
+                          ! interior restoring
+
 !EOP
 !BOC
 !-----------------------------------------------------------------------
@@ -54,17 +65,6 @@
 !  internal module variables
 !
 !-----------------------------------------------------------------------
-
-   real (r8), dimension(:,:,:,:,:), allocatable :: &
-      S_INTERIOR_DATA  ! data to use for interior restoring
-
-   real (r8), dimension(:,:,:), allocatable :: &
-      S_RESTORE_RTAU   !  inverse restoring timescale for
-                       !  spatially-varying restoring
-
-   integer (int_kind), dimension(:,:,:), allocatable :: &
-      S_RESTORE_MAX_LEVEL ! maximum level for applying variable
-                          ! interior restoring
 
    real (r8), dimension(12) :: &
       s_interior_data_time

@@ -970,19 +970,19 @@
 <!---------------------------->
 
 <pt_interior_data_renorm>20*1.</pt_interior_data_renorm>
-<pt_interior_data_type>'none'</pt_interior_data_type>
+<pt_interior_data_type>'annual'</pt_interior_data_type>
 <pt_interior_data_inc>24.</pt_interior_data_inc>
 <pt_interior_interp_freq>'every-timestep'</pt_interior_interp_freq>
 <pt_interior_interp_type>'linear'</pt_interior_interp_type>
 <pt_interior_interp_inc>72.</pt_interior_interp_inc>
-<pt_interior_restore_tau>365.</pt_interior_restore_tau>
-<pt_interior_filename>'unknown-pt_interior'</pt_interior_filename>
-<pt_interior_file_fmt>'bin'</pt_interior_file_fmt>
+<pt_interior_restore_tau>10.</pt_interior_restore_tau>
+<pt_interior_filename>'PHC2_TEMP_gx1v6_ann_avg.110511.nc'</pt_interior_filename>
+<pt_interior_file_fmt>'nc'</pt_interior_file_fmt>
 <pt_interior_restore_max_level>0</pt_interior_restore_max_level>
 <pt_interior_formulation>'restoring'</pt_interior_formulation>
-<pt_interior_variable_restore>.false.</pt_interior_variable_restore>
-<pt_interior_restore_filename>'unknown-pt_interior_restore'</pt_interior_restore_filename>
-<pt_interior_restore_file_fmt>'bin'</pt_interior_restore_file_fmt>
+<pt_interior_variable_restore>.true.</pt_interior_variable_restore>
+<pt_interior_restore_filename>'nrcm_pt_interior_restore.130624.nc'</pt_interior_restore_filename>
+<pt_interior_restore_file_fmt>'nc'</pt_interior_restore_file_fmt>
 <pt_interior_surface_restore>.false.</pt_interior_surface_restore>
 <pt_interior_surface_restore ocn_onedim="TRUE">.true.</pt_interior_surface_restore>
 <pt_interior_shr_stream_year_first>1</pt_interior_shr_stream_year_first>
@@ -995,19 +995,19 @@
 <!---------------------------->
 
 <s_interior_data_renorm>20*1.</s_interior_data_renorm>
-<s_interior_data_type>none</s_interior_data_type>
+<s_interior_data_type>annual</s_interior_data_type>
 <s_interior_data_inc>24.</s_interior_data_inc>
 <s_interior_interp_freq>every-timestep</s_interior_interp_freq>
 <s_interior_interp_type>linear</s_interior_interp_type>
 <s_interior_interp_inc>72.</s_interior_interp_inc>
-<s_interior_restore_tau>365.</s_interior_restore_tau>
-<s_interior_filename>'unknown-s_interior'</s_interior_filename>
-<s_interior_file_fmt>'bin'</s_interior_file_fmt>
+<s_interior_restore_tau>10.</s_interior_restore_tau>
+<s_interior_filename>'NRCM_SALT_gx1v6_ann_avg.120820.nc'</s_interior_filename>
+<s_interior_file_fmt>'nc'</s_interior_file_fmt>
 <s_interior_restore_max_level>0</s_interior_restore_max_level>
 <s_interior_formulation>'restoring'</s_interior_formulation>
-<s_interior_variable_restore>.false.</s_interior_variable_restore>
-<s_interior_restore_filename>'unknown-s_interior_restore'</s_interior_restore_filename>
-<s_interior_restore_file_fmt>'bin'</s_interior_restore_file_fmt>
+<s_interior_variable_restore>.true.</s_interior_variable_restore>
+<s_interior_restore_filename>'nrcm_s_interior_restore.150804.nc'</s_interior_restore_filename>
+<s_interior_restore_file_fmt>'nc'</s_interior_restore_file_fmt>
 <s_interior_surface_restore>.false.</s_interior_surface_restore>
 <s_interior_surface_restore ocn_onedim="TRUE">.true.</s_interior_surface_restore>
 <s_interior_shr_stream_year_first>1</s_interior_shr_stream_year_first>

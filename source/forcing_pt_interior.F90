@@ -47,6 +47,17 @@
    real (r8), public ::       &! public for use in restart
       pt_interior_interp_last  ! time last interpolation was done
 
+   real (r8), dimension(:,:,:,:,:), allocatable, public :: &
+      PT_INTERIOR_DATA  ! data to restore interior pot temp towards
+
+   real (r8), dimension(:,:,:), allocatable, public :: &
+      PT_RESTORE_RTAU  ! inverse restoring timescale for variable
+                       ! interior restoring
+
+   integer (int_kind), dimension(:,:,:), allocatable, public :: &
+      PT_RESTORE_MAX_LEVEL ! maximum level for applying variable
+                           ! interior restoring
+
 !EOP
 !BOC
 !-----------------------------------------------------------------------
@@ -54,17 +65,6 @@
 !  internal module variables
 !
 !-----------------------------------------------------------------------
-
-   real (r8), dimension(:,:,:,:,:), allocatable :: &
-      PT_INTERIOR_DATA  ! data to restore interior pot temp towards
-
-   real (r8), dimension(:,:,:), allocatable :: &
-      PT_RESTORE_RTAU  ! inverse restoring timescale for variable
-                       ! interior restoring
-
-   integer (int_kind), dimension(:,:,:), allocatable :: &
-      PT_RESTORE_MAX_LEVEL ! maximum level for applying variable
-                           ! interior restoring
 
    real (r8), dimension(12) :: &
       pt_interior_data_time    !
