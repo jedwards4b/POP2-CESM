@@ -1,6 +1,20 @@
 ===============================================================================
 Tag Creator: kauff
 Developers:  kauff
+Tag Date:    2020 Dec 11
+Tag Name:    ihesp-embedded-master_201211
+Tag Summary: used in C_OC.g09g17_g09g17.02 BAMS run
+
+C_OC.g09g17_g09g17.02 -- 2020-Sep composite grid, 2-year run for BAMS paper
+Where oop thinks it's just doing a standard gx1v7 run
+
+Hard-coded ocn_grip=gx1v7 because g09g17 in scripts isn't known to pop
+-        ocn_grid=case.get_value("OCN_GRID"),
++        ocn_grid= "gx1v7",
+
+===============================================================================
+Tag Creator: kauff
+Developers:  kauff
 Tag Date:    2019 July 11
 Tag Name:    ihesp-embedded-master_190711
 Tag Summary: 
@@ -9,6 +23,7 @@ Testing: With all non-ihesp code from cesm2.1.1:
          builds & runs on cheyenne, until roms blows up
 
 ===============================================================================
+
 Tag Creator: kauff
 Developers:  kauff
 Tag Date:    2019 June 27
@@ -24,6 +39,7 @@ drivers/cpl/pop_comp_mct.F90       -- connects to ocpl
 ===============================================================================
 branch:   ihesp-embedded-master  -> pop is subroutine to ocpl (ocn coupler)
 ===============================================================================
+
 Tag Creator: klindsay
 Developers:  klindsay
 Tag Date:    06 Mar 2019
