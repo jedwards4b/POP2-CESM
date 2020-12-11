@@ -60,6 +60,7 @@ def _copy_files_to_blddir(case):
 
     caseroot = case.get_value("CASEROOT")
     ocn_grid = case.get_value("OCN_GRID")
+    ocn_grid = "gx1v7" # ECESM 
 
     srcpath = os.path.join(caseroot, "SourceMods", "src.pop")
 

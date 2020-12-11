@@ -93,6 +93,7 @@ def determine_tracer_count(case, caseroot, srcroot, decomp_cppdefs):
     # and replaces multiple whitespace with a single space
     ocn_tracer_modules = " ".join(case.get_value("OCN_TRACER_MODULES").split())
     ocn_grid = case.get_value("OCN_GRID")
+    ocn_grid = "gx1v7"  # ECESM
 
     if ocn_tracer_modules:
         for module in ocn_tracer_modules.split(" "):
@@ -173,13 +174,15 @@ def determine_tracer_count(case, caseroot, srcroot, decomp_cppdefs):
         IRF_NT=IRF_NT,
         MARBL_NT=MARBL_NT,
         ocn_bgc_config=case.get_value("OCN_BGC_CONFIG"),
-        ocn_grid=case.get_value("OCN_GRID"),
+        ocn_grid= "gx1v7",
         use_abio=use_abio,
         use_cfc=use_cfc,
         use_ecosys=use_ecosys,
         use_iage=use_iage,
         use_irf=use_irf,
         use_sf6=use_sf6)
+
+    #   ocn_grid=case.get_value("OCN_GRID"),
 
     config_cache_path = os.path.join(caseroot, "Buildconf", "popconf", "config_cache.xml")
     with open(config_cache_path, 'w') as config_cache_file:
@@ -215,6 +218,7 @@ def buildcpp(case):
         nthrds_ocn = case.get_value("NTHRDS_OCN")
         ntasks = case.get_value("NTASKS_PER_INST_OCN")
         ocn_grid = case.get_value("OCN_GRID")
+        ocn_grid= "gx1v7" # ECESM
 
         cmd = os.path.join(srcroot, "components", "pop", "bld", "generate_pop_decomp.pl")
         command = "%s -ccsmroot %s -res %s -nproc %s -thrds %s -output %s "  \

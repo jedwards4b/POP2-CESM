@@ -41,6 +41,7 @@ def buildnml(case, caseroot, compname):
     get_refcase = case.get_value("GET_REF_CASE")
     ninst = case.get_value("NINST_OCN")
     ocn_grid = case.get_value("OCN_GRID")
+    ocn_grid = "gx1v7" # ECESM
     run_type = case.get_value("RUN_TYPE")
     ocn_bgc_config = case.get_value("OCN_BGC_CONFIG")
     run_refcase = case.get_value("RUN_REF CASE")
