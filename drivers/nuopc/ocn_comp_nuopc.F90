@@ -62,6 +62,9 @@ module ocn_comp_nuopc
   use ocn_import_export     , only : ocn_import, ocn_export, pop_sum_buffer, tlast_coupled
   use nuopc_shr_methods     , only : chkerr, state_setscalar, state_getscalar, state_diagnose, alarmInit
   use nuopc_shr_methods     , only : set_component_logging, get_component_instance, log_clock_advance
+#ifdef _OPENMP
+  use omp_lib               , only : omp_set_num_threads  ! threads that can execute concurrently in a single parallel region
+#endif
 
   ! !PUBLIC MEMBER FUNCTIONS:
   implicit none
@@ -93,6 +96,7 @@ module ocn_comp_nuopc
   integer (int_kind)  :: cpl_write_tavg      ! flag id for write tavg
   integer (int_kind)  :: cpl_diag_global     ! flag id for computing diagnostics
   integer (int_kind)  :: cpl_diag_transp     ! flag id for computing diagnostics
+  integer (int_kind)  :: nthrds              ! number of threads in this component
   character(char_len) :: runtype
 
   character(*), parameter :: u_FILE_u = &
@@ -324,8 +328,9 @@ contains
     integer                 :: my_elim_start
     integer                 :: my_elim_end
     integer(int_kind)       :: lsize
-    integer(int_kind)       :: nThreads
     integer(int_kind)       :: npes
+    integer(int_kind)       :: localPet
+    integer(int_kind)       :: localPeCount
     integer(int_kind)       :: iam
     character(len=32)       :: starttype
     integer                 :: n,i,j,iblk,jblk,ig,jg
@@ -333,9 +338,6 @@ contains
     integer(POP_i4)         :: errorCode       ! error code
     integer(POP_i4) , pointer    :: blockLocation(:)
     character(len=*), parameter  :: subname = "ocn_comp_nuopc:(InitializeRealize)"
-#ifdef _OPENMP
-    integer, external :: omp_get_max_threads  ! max threads that can execute concurrently in a single parallel region
-#endif
     type(ESMF_Field)  :: areaField
     type(ESMF_Array)  :: areaArray
     real(R8), pointer :: areaptr(:)
@@ -346,14 +348,26 @@ contains
 
     if (dbug > 5) call ESMF_LogWrite(subname//' called', ESMF_LOGMSG_INFO)
 
-#ifdef _OPENMP
-    nThreads = omp_get_max_threads()
-#endif
+    call ESMF_GridCompGet(gcomp, vm=vm, localpet=localPet, rc=rc)
+    if (ChkErr(rc,__LINE__,u_FILE_u)) return
 
-    call ESMF_GridCompGet(gcomp, vm=vm, rc=rc)
+    call ESMF_VMGet(vm, PetCount=npes, rc=rc)
     if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    call ESMF_VMGet(vm, localPet=iam, PetCount=npes, rc=rc)
+
+    call ESMF_VMGet(vm, pet=localPet, peCount=localPeCount, rc=rc)
     if (ChkErr(rc,__LINE__,u_FILE_u)) return
+
+    if(localPeCount == 1) then
+       call NUOPC_CompAttributeGet(gcomp, "nthreads", value=cvalue, rc=rc)
+       if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=u_FILE_u)) return
+       read(cvalue,*) nthrds
+    else
+       nthrds = localPeCount
+    endif
+!$  call omp_set_num_threads(nthrds)
+    if (localPet==0) then
+       write(stdout,*) 'nthrds set to ',nthrds
+    endif
 
 #if (defined _MEMTRACE)
     if (iam == 0) then
@@ -995,6 +1009,7 @@ contains
        end if
     end if
 
+!$  call omp_set_num_threads(nthrds)
 
 #if (defined _MEMTRACE)
     if(my_task == 0 ) then

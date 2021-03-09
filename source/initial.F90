@@ -49,7 +49,7 @@
    use advection, only: init_advection
    use diagnostics, only: init_diagnostics
    use state_mod, only: init_state, state, state_itype, state_type_mwjf, state_range_iopt, &
-      state_range_enforce 
+      state_range_enforce
    use time_management, only: first_step, init_time1, init_time2, &
                               dttxcel, dtuxcel, check_time_flag_int,  &
                               get_time_flag_id, freq_opt_nhour
@@ -87,7 +87,7 @@
 #endif
    use overflows
    use overflow_type
-   use estuary_vsf_mod, only: init_estuary   
+   use estuary_vsf_mod, only: init_estuary
    use running_mean_mod, only: running_mean_init
    use mcog, only: init_mcog
    use software_eng_mod, only : lchange_ans, init_software_eng
@@ -134,7 +134,7 @@
 
 ! !DESCRIPTION:
 !  This routine is the first of a two-phase initialization process for
-!  a POP run. It calls various module initialization routines and sets up 
+!  a POP run. It calls various module initialization routines and sets up
 !  the initial temperature and salinity
 !
 ! !REVISION HISTORY:
@@ -227,7 +227,7 @@
 
 !-----------------------------------------------------------------------
 !
-!  initialize timers 
+!  initialize timers
 !
 !-----------------------------------------------------------------------
 
@@ -315,7 +315,7 @@
 !-----------------------------------------------------------------------
 
    call POP_SolversInit(errorCode)
-  
+
    if (errorCode /= POP_Success) then
       call POP_ErrorSet(errorCode, &
          'POP_Init: error initializing solvers')
@@ -351,7 +351,7 @@
 !-----------------------------------------------------------------------
 
    call POP_SolversPrep(errorCode)
-  
+
    if (errorCode /= POP_Success) then
       call POP_ErrorSet(errorCode, &
          'POP_Init: error preprocessing solvers')
@@ -414,7 +414,7 @@
 !
 !  initialize fields for damping and surface forcing
 !       o init_ws
-!       o init_shf 
+!       o init_shf
 !       o init_sfwf
 !       o init_pt_interior
 !       o init_s_interior
@@ -465,7 +465,7 @@
 
 ! !DESCRIPTION:
 !  This routine completes the two-phase initialization process for
-!  a POP run. 
+!  a POP run.
 !
 ! !REVISION HISTORY:
 !  same as module
@@ -533,7 +533,7 @@
 !  initialize niw driven mixing
 !
 !-----------------------------------------------------------------------
-   
+
    call init_niw_mixing
 
 !-----------------------------------------------------------------------
@@ -611,7 +611,7 @@
 !  initialize ms_balance
 !
 !-----------------------------------------------------------------------
- 
+
    if (lcoupled .and. lms_balance) call init_ms_balance
 
 !-----------------------------------------------------------------------
@@ -632,7 +632,7 @@
 
 !-----------------------------------------------------------------------
 !
-!  initialize output; subroutine init_output calls 
+!  initialize output; subroutine init_output calls
 !       o init_restart
 !       o init_history
 !       o init_movie
@@ -678,7 +678,7 @@
 
 !-----------------------------------------------------------------------
 !
-!  check consistency of model options 
+!  check consistency of model options
 !
 !-----------------------------------------------------------------------
 
@@ -841,7 +841,7 @@
 ! !INTERFACE:
 
  subroutine init_ts(errorCode)
-
+!$ use omp_lib, only : omp_get_thread_num
 ! !DESCRIPTION:
 !  Initializes temperature and salinity and
 !  initializes prognostic variables from restart if required
@@ -874,7 +874,7 @@
 
    namelist /init_ts_nml/ init_ts_option, init_ts_file, init_ts_file_fmt, &
                           init_ts_suboption, init_ts_outfile, &
-		  	  init_ts_outfile_fmt, init_ts_perturb
+                          init_ts_outfile_fmt, init_ts_perturb
 
 !-----------------------------------------------------------------------
 !
@@ -1004,7 +1004,7 @@
 
 !-----------------------------------------------------------------------
 !
-!  read input namelist and broadcast 
+!  read input namelist and broadcast
 !
 !-----------------------------------------------------------------------
 
@@ -1049,10 +1049,10 @@
                 luse_pointer_files = .false.
        endif
        select case (init_ts_option)
-         case ('ccsm_continue', 'restart', 'ccsm_branch', 'ccsm_hybrid') 
+         case ('ccsm_continue', 'restart', 'ccsm_branch', 'ccsm_hybrid')
             if (luse_pointer_files) then
                write(stdout,*) ' In this case, the init_ts_file' /&
-               &/ ' name will be read from the pointer file.'   
+               &/ ' name will be read from the pointer file.'
                write(stdout,*) ' '
             endif
        end select
@@ -1299,7 +1299,7 @@
                 TRACER(:,:,k,n,curtime,iblock) = c0
          end do
          end do
- 
+
          !*** convert salinity to model units
          TRACER(:,:,:,2,curtime,iblock) = &
          TRACER(:,:,:,2,curtime,iblock)*ppt_to_salt
@@ -1346,7 +1346,7 @@
       !***
 
       call get_unit(nu)
-      if (my_task == master_task) then 
+      if (my_task == master_task) then
          write(stdout,'(a40,a)') &
             'Initial mean T,S profile read from file:', &
             trim(init_ts_file)
@@ -1389,7 +1389,7 @@
    case ('internal')
       first_step = .true.
       if (my_task == master_task) then
-         write(stdout,'(a63)') & 
+         write(stdout,'(a63)') &
         'Initial T,S profile computed internally from 1992 Levitus data'
          call POP_IOUnitsFlush(POP_stdout) ; call POP_IOUnitsFlush(stdout)
       endif
@@ -1409,7 +1409,7 @@
 
             sinterp = (dpth_meters         - depth_levitus(kk))/ &
                       (depth_levitus(kk+1) - depth_levitus(kk))
- 
+
             tinit(k) = (c1 - sinterp)*tmean_levitus(kk) + &
                              sinterp *tmean_levitus(kk+1)
             sinit(k) = (c1 - sinterp)*smean_levitus(kk) + &
@@ -1472,11 +1472,11 @@
        call shr_ncread_tField(trim(init_ts_file),1,'lat',tmp2)
        call shr_ncread_tField(trim(init_ts_file),1,'depth',PHC_z)
 
-       do j=1,PHCny 
-	  PHC_x(:,j) = tmp1/radian
+       do j=1,PHCny
+          PHC_x(:,j) = tmp1/radian
        enddo
-       do i=1,PHCnx 
-	  PHC_y(i,:) = tmp2/radian
+       do i=1,PHCnx
+          PHC_y(i,:) = tmp2/radian
        enddo
 
        call shr_map_mapSet(PHC_map, PHC_x, PHC_y, PHC_msk, &
@@ -1506,9 +1506,9 @@
        ! do vertical remap of T
        !-------------------------------------------------
            call shr_ncread_field4dG(trim(init_ts_file),'TEMP', &
-		rfld=PHC_ktop, dim3='depth',dim3i=kk)
+                rfld=PHC_ktop, dim3='depth',dim3i=kk)
            call shr_ncread_field4dG(trim(init_ts_file),'TEMP', &
-		rfld=PHC_kbot, dim3='depth',dim3i=kk+1)
+                rfld=PHC_kbot, dim3='depth',dim3i=kk+1)
            tmpkt = reshape(PHC_ktop,(/PHCnx,PHCny/))
            tmpkb = reshape(PHC_kbot,(/PHCnx,PHCny/))
            PHC_kmod_T(:,:) = (c1 - sinterp)*tmpkt(:,:) + &
@@ -1636,7 +1636,7 @@
        end do
        end do
        end do
-             
+
        deallocate(rndm_seed)
 
    end if
@@ -1763,7 +1763,7 @@
      write(stdout,*) ' Constants used in this run:'
      write(stdout,blank_fmt)
 
-     write(stdout,1020) 'grav',    grav,      'cm/s^2'  
+     write(stdout,1020) 'grav',    grav,      'cm/s^2'
      write(stdout,1020) 'omega',   omega,     'rad/s'
      write(stdout,1020) 'radius',  radius,    'cm'
      write(stdout,1020) 'cp_sw',   cp_sw,     'erg/g/K'
@@ -1771,8 +1771,8 @@
      write(stdout,1020) 'rho_air', rho_air,   'kg/m^3'
      write(stdout,1020) 'rho_sw',  rho_sw,    'g/cm^3'
      write(stdout,1020) 'rho_fw',  rho_fw,    'g/cm^3'
-     write(stdout,1020) 'sound',   sound,     'cm/s' 
-     write(stdout,1020) 'vonkar',  vonkar,    ' '        
+     write(stdout,1020) 'sound',   sound,     'cm/s'
+     write(stdout,1020) 'vonkar',  vonkar,    ' '
      write(stdout,1020) 'emissivity',emissivity, ' '
      write(stdout,1020) 'stefan_boltzmann', stefan_boltzmann,  &
                            'W/m^2/K^4'
@@ -1780,10 +1780,10 @@
                            'J/kg'
      write(stdout,1020) 'latent_heat_fusion',latent_heat_fusion, &
                            'erg/g'
-     write(stdout,1020) 'ocn_ref_salinity', ocn_ref_salinity, 'psu' 
-     write(stdout,1020) 'sea_ice_salinity', sea_ice_salinity, 'psu' 
-     write(stdout,1020) 'T0_Kelvin',        T0_Kelvin,        'K' 
-     write(stdout,1020) 'pi',               pi,               ' ' 
+     write(stdout,1020) 'ocn_ref_salinity', ocn_ref_salinity, 'psu'
+     write(stdout,1020) 'sea_ice_salinity', sea_ice_salinity, 'psu'
+     write(stdout,1020) 'T0_Kelvin',        T0_Kelvin,        'K'
+     write(stdout,1020) 'pi',               pi,               ' '
 
      write(stdout,blank_fmt)
      write(stdout,ndelim_fmt)
@@ -1799,7 +1799,7 @@
 !EOC
 
  end subroutine document_constants
- 
+
 
 !***********************************************************************
 !BOP
@@ -1811,7 +1811,7 @@
 ! !DESCRIPTION:
 !  This routine tests for consistency between model options, usually involving
 !  two or more modules, then writes warning and error messages to the output log file.
-!  If one or more error conditions are detected, the pop model will be shut down 
+!  If one or more error conditions are detected, the pop model will be shut down
 !  after all warning and error messages are printed.
 
 ! !REVISION HISTORY:
@@ -1833,10 +1833,10 @@
    integer (int_kind)        ::  &
       number_of_fatal_errors,    &! counter for fatal error conditions
       number_of_warnings,        &! counter for warning messages
-      n,                         &! loop index 
+      n,                         &! loop index
       ns,                        &! streams loop index
       temp_tavg_id,              &! temporary tavg_id holder
-      coupled_flag                ! flag for coupled_ts 
+      coupled_flag                ! flag for coupled_ts
 
    logical (log_kind)        ::  &
       test_condition,            &! logical test condition
@@ -1875,13 +1875,13 @@
    if (my_task == master_task) then
      if (sfc_layer_type == sfc_layer_varthick .and.  &
          dtuxcel /= dttxcel(1) ) then
-       exit_string = 'WARNING:  Surface tracer and momentum timesteps are unequal; ' /&     
+       exit_string = 'WARNING:  Surface tracer and momentum timesteps are unequal; ' /&
        &/'may cause instability when using variable-thickness surface layer.'
        call document ('POP_check', exit_string)
        number_of_warnings = number_of_warnings + 1
      endif
    endif
- 
+
 !-----------------------------------------------------------------------
 !
 !  bulk-NCEP and marginal-seas balancing
@@ -1895,7 +1895,7 @@
        call document ('POP_check', exit_string)
        number_of_warnings = number_of_warnings + 1
      endif
-   endif 
+   endif
 
 !-----------------------------------------------------------------------
 !
@@ -1937,7 +1937,7 @@
 !-----------------------------------------------------------------------
 
    call broadcast_scalar(number_of_warnings, master_task)
- 
+
    if (number_of_warnings == 0 ) then
      if (my_task == master_task) then
        exit_string = 'No warning messages generated'
@@ -1961,7 +1961,7 @@
 
    if (check_all(ltidal_mixing .and. vmix_itype /= vmix_type_kpp)) then
      exit_string =   &
-     'FATAL ERROR:  Tidally driven mixing is only allowed when KPP mixing is enabled' 
+     'FATAL ERROR:  Tidally driven mixing is only allowed when KPP mixing is enabled'
      call document ('POP_check', exit_string)
      number_of_fatal_errors = number_of_fatal_errors + 1
    endif
@@ -1990,7 +1990,7 @@
     exit_string = 'FATAL ERROR: '
 
     do n=1,7
-      ISOP_test = .false. 
+      ISOP_test = .false.
       string = trim(strings(n))
       ISOP_test = set_in_tavg_contents (tavg_id(trim(string),quiet=.true.))
       if (.not. ISOP_test) then
@@ -1998,7 +1998,7 @@
         ISOP_on = .false.
       endif
     enddo
-    
+
     if (.not. ISOP_on) then
      exit_string =   trim(exit_string) /&
      &/' must be activated in tavg_contents file when diag_gm_bolus = .T.'
@@ -2130,7 +2130,7 @@
 
    if (check_all(lniw_mixing .and. vmix_itype /= vmix_type_kpp)) then
      exit_string =   &
-     'FATAL ERROR:  Near-inertial wave mixing is only allowed when KPP mixing is enabled' 
+     'FATAL ERROR:  Near-inertial wave mixing is only allowed when KPP mixing is enabled'
      call document ('POP_check', exit_string)
      number_of_fatal_errors = number_of_fatal_errors + 1
    endif
@@ -2149,7 +2149,7 @@
      call document ('POP_check', '(coupled_freq_iopt == freq_opt_nhour .and. ncouple_per_day == 2) ',  &
                         (coupled_freq_iopt == freq_opt_nhour .and. ncouple_per_day == 2) )
      exit_string =   &
-     'FATAL ERROR:  Near-inertial wave mixing is only allowed when coupling every two hours' 
+     'FATAL ERROR:  Near-inertial wave mixing is only allowed when coupling every two hours'
      call document ('POP_check', exit_string)
      number_of_fatal_errors = number_of_fatal_errors + 1
    endif
@@ -2161,7 +2161,7 @@
 !-----------------------------------------------------------------------
 
    call broadcast_scalar(number_of_fatal_errors, master_task)
- 
+
    if (number_of_fatal_errors > 0 ) then
      call exit_POP (sigAbort,  &
          'correct the error condition(s) listed above before continuing')
@@ -2171,7 +2171,7 @@
        call document ('POP_check', exit_string)
      endif
    endif
- 
+
 
 !-----------------------------------------------------------------------
 !EOC
@@ -2289,9 +2289,9 @@
  function check_all(condition)
 
 ! !DESCRIPTION:
-!   Tests input logical condition on all processors; if any element is 
+!   Tests input logical condition on all processors; if any element is
 !     .true., check_all is set to .true.
-! 
+!
 !
 ! !REVISION HISTORY:
 !  same as module
@@ -2306,7 +2306,7 @@
    logical (log_kind) :: &
       check_all               ! true if condition is true on any processor
 
-                     
+
 !EOP
 !BOC
 
