@@ -162,7 +162,7 @@
 <init_ts_file_fmt ocn_grid="gx1v7">nc</init_ts_file_fmt>
 <init_ts_file ocn_grid="tx1v1">  ocn/pop/tx1v1/ic/ts_jan_ic_20050510.ieeer8</init_ts_file>
 <init_ts_file ocn_grid="tx0.1v2">ocn/pop/tx0.1v2/ic/GC007v3.pop.r.0001-01-16-00000</init_ts_file>
-<init_ts_file ocn_grid="tx0.1v3">ocn/pop/tx0.1v3/ic/ts.woa2013v2_0.25.ic.POP_tx0.1v3_62lev.20170920.nc</init_ts_file>
+<init_ts_file ocn_grid="tx0.1v3">ocn/roms/gst03v1/g.e20.G.TL319_t13.control.001_hfreq.pop.r.0053-01-01-00000.nc</init_ts_file>
 <init_ts_file_fmt ocn_grid="tx0.1v3">nc</init_ts_file_fmt>
 <init_ts_hdr_file ocn_grid="tx0.1v2">ocn/pop/tx0.1v2/ic/GC007v3.pop.r.0001-01-16-00000.hdr</init_ts_hdr_file>
 
@@ -977,14 +977,14 @@
 <pt_interior_interp_type>'linear'</pt_interior_interp_type>
 <pt_interior_interp_inc>72.</pt_interior_interp_inc>
 <pt_interior_restore_tau>10.</pt_interior_restore_tau>
-<pt_interior_filename>'PHC2_TEMP_gx1v6_ann_avg.110511.nc'</pt_interior_filename>
+<pt_interior_filename>'ecesm_TEMP_t13_ann_avg.210422.nc'</pt_interior_filename>
 <pt_interior_file_fmt>'nc'</pt_interior_file_fmt>
 <pt_interior_restore_max_level>0</pt_interior_restore_max_level>
 <pt_interior_formulation>'restoring'</pt_interior_formulation>
 <pt_interior_variable_restore>.true.</pt_interior_variable_restore>
-<pt_interior_restore_filename>'nrcm_pt_interior_restore.130624.nc'</pt_interior_restore_filename>
+<pt_interior_restore_filename>'ecesm_t13_pt_interior_restore.210422.nc'</pt_interior_restore_filename>
 <pt_interior_restore_file_fmt>'nc'</pt_interior_restore_file_fmt>
-<pt_interior_surface_restore>.false.</pt_interior_surface_restore>
+<pt_interior_surface_restore>.true.</pt_interior_surface_restore>
 <pt_interior_surface_restore ocn_onedim="TRUE">.true.</pt_interior_surface_restore>
 <pt_interior_shr_stream_year_first>1</pt_interior_shr_stream_year_first>
 <pt_interior_shr_stream_year_last>1</pt_interior_shr_stream_year_last>
@@ -1002,14 +1002,14 @@
 <s_interior_interp_type>linear</s_interior_interp_type>
 <s_interior_interp_inc>72.</s_interior_interp_inc>
 <s_interior_restore_tau>10.</s_interior_restore_tau>
-<s_interior_filename>'NRCM_SALT_gx1v6_ann_avg.120820.nc'</s_interior_filename>
+<s_interior_filename>'ecesm_SALT_t13_ann_avg.210422.nc'</s_interior_filename>
 <s_interior_file_fmt>'nc'</s_interior_file_fmt>
 <s_interior_restore_max_level>0</s_interior_restore_max_level>
 <s_interior_formulation>'restoring'</s_interior_formulation>
 <s_interior_variable_restore>.true.</s_interior_variable_restore>
-<s_interior_restore_filename>'nrcm_s_interior_restore.150804.nc'</s_interior_restore_filename>
+<s_interior_restore_filename>'ecesm_t13_s_interior_restore.210422.nc'</s_interior_restore_filename>
 <s_interior_restore_file_fmt>'nc'</s_interior_restore_file_fmt>
-<s_interior_surface_restore>.false.</s_interior_surface_restore>
+<s_interior_surface_restore>.true.</s_interior_surface_restore>
 <s_interior_surface_restore ocn_onedim="TRUE">.true.</s_interior_surface_restore>
 <s_interior_shr_stream_year_first>1</s_interior_shr_stream_year_first>
 <s_interior_shr_stream_year_last>1</s_interior_shr_stream_year_last>
