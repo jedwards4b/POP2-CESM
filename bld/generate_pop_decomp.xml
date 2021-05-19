@@ -753,6 +753,14 @@
 
   <!-- tx0.1v3 resolution -->
 
+  <decomp nproc="1024" res="tx0.1v3" >
+    <maxblocks >3</maxblocks>
+    <bsize_x   >72</bsize_x>
+    <bsize_y   >48</bsize_y>
+    <decomptype>spacecurve</decomptype>
+  </decomp>
+
+
   <decomp nproc="2208" res="tx0.1v3" >
     <maxblocks >1</maxblocks>
     <bsize_x   >60</bsize_x>
