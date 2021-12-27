@@ -71,7 +71,7 @@
       timer_step_RF,           &! timer number for step_RF
       timer_baroclinic,        &! timer for baroclinic parts of step
       timer_barotropic,        &! timer for barotropic part  of step
-      timer_3dupdate		! timer for the 3D update after baroclinic component
+      timer_3dupdate            ! timer for the 3D update after baroclinic component
 
 
    integer (POP_i4) :: ierr
@@ -1600,7 +1600,7 @@
 
 
    !*** time-invariant areas and volumes
-   write(stdout,*) 'k, area_t_k(k), bgtarea_t_k(k) open_ocean_area_t_k(k)'
+   if (my_task == master_task) write(stdout,*) 'k, area_t_k(k), bgtarea_t_k(k) open_ocean_area_t_k(k)'
 
    do k=1,km
      bgtarea_t_k(k) = global_sum(TAREA(:,:,1:nblocks_clinic),distrb_clinic,field_loc_center,MASK_TRBUDGET(:,:,k,:))
@@ -1611,14 +1611,15 @@
                                          RCALCT_OPEN_OCEAN_3D(:,:,k,:))
      if (k .ge. 2) open_ocean_volume_2_km = open_ocean_volume_2_km +  &
                                             open_ocean_area_t_k(k)*dz(k)
-     write(stdout,1099) k, area_t_k(k), bgtarea_t_k(k), open_ocean_area_t_k(k)
+     if (my_task == master_task) write(stdout,1099) k, area_t_k(k), bgtarea_t_k(k), open_ocean_area_t_k(k)
    enddo ! k
 
    !*** time-invariant areas and volumes
-   write(stdout,*) ' '
-   write(stdout,1100)    'open_ocean_volume_2_km ', open_ocean_volume_2_km
-   write(stdout,1100)    'rf_volume_2_km         ', rf_volume_2_km
-
+   if (my_task == master_task) THEN
+      write(stdout,*) ' '
+      write(stdout,1100)    'open_ocean_volume_2_km ', open_ocean_volume_2_km
+      write(stdout,1100)    'rf_volume_2_km         ', rf_volume_2_km
+   ENDIF
 1099 format (2x, i4, 2x, 3(1pe25.15))
 1100 format (2x, a,  2x, 3(1pe25.15))
 

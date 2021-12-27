@@ -41,7 +41,7 @@ def buildnml(case, caseroot, compname):
     get_refcase = case.get_value("GET_REF_CASE")
     ninst = case.get_value("NINST_OCN")
     ocn_grid = case.get_value("OCN_GRID")
-    ocn_grid = "gx1v7" # ECESM
+    ocn_grid = "tx0.1v3"  # "gx1v7" # ECESM
     run_type = case.get_value("RUN_TYPE")
     ocn_bgc_config = case.get_value("OCN_BGC_CONFIG")
     run_refcase = case.get_value("RUN_REF CASE")
@@ -162,7 +162,7 @@ def buildnml(case, caseroot, compname):
             expect(os.path.isfile(pointer_file),
                    "Missing required pointer_file %s ---"
                    "has pop initial data been prestaged to %s?" %(pointer_file, rundir))
-            if 'RESTART_FMT=nc' in open(pointer_file).read():
+            if 'RESTART_FMT=nc' in open(pointer_file,encoding="utf-8").read():
                 _format = 'nc'
         os.environ["RESTART_INPUT_TS_FMT"] = _format
 

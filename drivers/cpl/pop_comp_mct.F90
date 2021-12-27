@@ -178,9 +178,6 @@ contains
     character(*), parameter :: subname = "(pop_init_mct) "
 
 !-----------------------------------------------------------------------
-
-   write(stdout,*) subname,"ENTER"
-
     errorCode = POP_Success
 
 !   call shr_file_getLogUnit (shrlogunit)  BK: ocpl manages CESM log units

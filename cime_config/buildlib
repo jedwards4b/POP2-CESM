@@ -60,7 +60,7 @@ def _copy_files_to_blddir(case):
 
     caseroot = case.get_value("CASEROOT")
     ocn_grid = case.get_value("OCN_GRID")
-    ocn_grid = "gx1v7" # ECESM 
+    ocn_grid = "tx0.1v3"  # "gx1v7" # ECESM 
 
     srcpath = os.path.join(caseroot, "SourceMods", "src.pop")
 
@@ -180,6 +180,8 @@ def _build_pop():
         if not os.path.exists(f90_dir):
             os.makedirs(f90_dir)
         for filename in glob.glob('*.f90'):
+            if os.path.exists(os.path.join(f90_dir, filename)):
+                os.unlink(os.path.join(f90_dir, filename))
             shutil.move(filename, f90_dir)
 
         logger.info("Command %s completed with output %s\nerr %s", cmd, out, err)

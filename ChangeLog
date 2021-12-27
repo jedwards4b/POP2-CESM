@@ -1,6 +1,20 @@
 ===============================================================================
 Tag Creator: kauff
 Developers:  kauff
+Tag Date:    2021 May ??
+Tag Name:    ihesp-embedded-master_2105??
+Tag Summary: used in C_OC.gs03tx01_gs03tx01.03
+
+used in C_OC.gs03tx01_gs03tx01.03 simuilation (May 2021, cheyenne & grace)
+Where pop thinks it's just doing a standard tx0.1v3 run
+
+Hard-coded ocn_grip=tx01v3 because gs03tx01 in scripts isn't known to pop
+-        ocn_grid=case.get_value("OCN_GRID"),
++        ocn_grid= "tx01v3"
+
+===============================================================================
+Tag Creator: kauff
+Developers:  kauff
 Tag Date:    2020 Dec 11
 Tag Name:    ihesp-embedded-master_201211
 Tag Summary: used in C_OC.g09g17_g09g17.02 BAMS run
