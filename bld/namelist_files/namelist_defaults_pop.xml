@@ -113,7 +113,7 @@
 <region_mask_file ocn_grid="gx1v7"  >ocn/pop/gx1v7/grid/region_mask_20151008.ieeei4</region_mask_file>
 <region_mask_file ocn_grid="tx1v1"  >ocn/pop/tx1v1/grid/region_mask_20050510.ieeei4</region_mask_file>
 <region_mask_file ocn_grid="tx0.1v2">ocn/pop/tx0.1v2/grid/region_mask_20080702.ieeei4</region_mask_file>
-<region_mask_file ocn_grid="tx0.1v3">ocn/pop/tx0.1v3/grid/region_mask_20170718.ieeei4</region_mask_file>
+<region_mask_file ocn_grid="tx0.1v3">ocn/pop/tx0.1v3/grid/region_mask_20210920.ieeei4</region_mask_file>
 
 <kmt_kmin>3</kmt_kmin>
 
@@ -977,12 +977,12 @@
 <pt_interior_interp_type>'linear'</pt_interior_interp_type>
 <pt_interior_interp_inc>72.</pt_interior_interp_inc>
 <pt_interior_restore_tau>10.</pt_interior_restore_tau>
-<pt_interior_filename>'ecesm_TEMP_t13_ann_avg.210422.nc'</pt_interior_filename>
+<pt_interior_filename>ocn/roms/gst03/ecesm_TEMP_t13_ann_avg.210422.nc</pt_interior_filename>
 <pt_interior_file_fmt>'nc'</pt_interior_file_fmt>
 <pt_interior_restore_max_level>0</pt_interior_restore_max_level>
 <pt_interior_formulation>'restoring'</pt_interior_formulation>
 <pt_interior_variable_restore>.true.</pt_interior_variable_restore>
-<pt_interior_restore_filename>'ecesm_t13_pt_interior_restore.210422.nc'</pt_interior_restore_filename>
+<pt_interior_restore_filename>ocn/roms/gst03/ecesm_t13_pt_interior_restore.210422.nc</pt_interior_restore_filename>
 <pt_interior_restore_file_fmt>'nc'</pt_interior_restore_file_fmt>
 <pt_interior_surface_restore>.true.</pt_interior_surface_restore>
 <pt_interior_surface_restore ocn_onedim="TRUE">.true.</pt_interior_surface_restore>
@@ -1002,12 +1002,12 @@
 <s_interior_interp_type>linear</s_interior_interp_type>
 <s_interior_interp_inc>72.</s_interior_interp_inc>
 <s_interior_restore_tau>10.</s_interior_restore_tau>
-<s_interior_filename>'ecesm_SALT_t13_ann_avg.210422.nc'</s_interior_filename>
+<s_interior_filename>'ocn/roms/gst03/ecesm_SALT_t13_ann_avg.210422.nc'</s_interior_filename>
 <s_interior_file_fmt>'nc'</s_interior_file_fmt>
 <s_interior_restore_max_level>0</s_interior_restore_max_level>
 <s_interior_formulation>'restoring'</s_interior_formulation>
 <s_interior_variable_restore>.true.</s_interior_variable_restore>
-<s_interior_restore_filename>'ecesm_t13_s_interior_restore.210422.nc'</s_interior_restore_filename>
+<s_interior_restore_filename>'ocn/roms/gst03/ecesm_t13_s_interior_restore.210422.nc'</s_interior_restore_filename>
 <s_interior_restore_file_fmt>'nc'</s_interior_restore_file_fmt>
 <s_interior_surface_restore>.true.</s_interior_surface_restore>
 <s_interior_surface_restore ocn_onedim="TRUE">.true.</s_interior_surface_restore>

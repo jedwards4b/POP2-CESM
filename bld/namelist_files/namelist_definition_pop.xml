@@ -3920,7 +3920,8 @@ CESM Default: 365
 id="pt_interior_filename"
 type="char*256"
 category="Forcing (Interior Potential Temperature)"
-group="forcing_pt_interior_nml" >
+group="forcing_pt_interior_nml" 
+input_pathname="abs" >
 File containing interior potential temperature data, or root of filenames if pt_interior_data_type='n--hour'.
 
 Default: 'unknown-pt_interior'
@@ -3982,7 +3983,8 @@ Default: .false.
 id="pt_interior_restore_filename"
 type="char*256"
 category="Forcing (Interior Potential Temperature)"
-group="forcing_pt_interior_nml" >
+group="forcing_pt_interior_nml" 
+input_pathname="abs" >
 Name of file containing variable interior potential temperature restoring data.
 
 Default: 'unknown-pt_interior_restore'
@@ -4121,7 +4123,8 @@ CESM Default: 365
 id="s_interior_filename"
 type="char*256"
 category="Forcing (Interior Salt)"
-group="forcing_s_interior_nml" >
+group="forcing_s_interior_nml" 
+input_pathname="abs" >
 Name of file containing interior salinity data, or root of filenames if s_interior_data_type='n-hour'.
 
 Default: 'unknown-s_interior'
@@ -4183,7 +4186,8 @@ Default: .false.
 id="s_interior_restore_filename"
 type="char*256"
 category="Forcing (Interior Salt)"
-group="forcing_s_interior_nml" >
+group="forcing_s_interior_nml" 
+input_pathname="abs" >
 Name of file containing variable interior salinity restoring data.
 
 Default: 'unknown-s_interior_restore'
@@ -4308,7 +4312,8 @@ Default: 1e20
 id="ap_filename"
 type="char*256"
 category="Forcing (Atmospheric Pressure)"
-group="forcing_ap_nml" >
+group="forcing_ap_nml" 
+input_pathname="abs" >
 Name of file containing atmospheric pressure forcing, or root of filenames if ap_data_type='n-hour'.
 
 Default: 'unknown-ap'
