@@ -487,6 +487,7 @@ contains
 #ifdef CCSMCOUPLED
       call POP_IOUnitsFlush(stdout)
 #endif
+      write(stdout,*) subname,"EXIT" 
    endif
 
 !----------------------------------------------------------------------------
@@ -497,7 +498,6 @@ contains
 
 !   call shr_file_setLogUnit (shrlogunit)  BK: ocpl manages ocn log units
 !   call shr_file_setLogLevel(shrloglev)   BK: ocpl manages ocn log units
-   write(stdout,*) subname,"EXIT" ; call shr_sys_flush(stdout)
 
 !-----------------------------------------------------------------------
 !EOC
