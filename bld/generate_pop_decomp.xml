@@ -760,6 +760,14 @@
     <decomptype>spacecurve</decomptype>
   </decomp>
 
+  <decomp nproc="972" res="tx0.1v3" >
+    <maxblocks >1</maxblocks>
+    <bsize_x   >225</bsize_x>
+    <bsize_y   >32</bsize_y>
+    <decomptype>spacecurve</decomptype>
+  </decomp>
+
+
   <decomp nproc="1024" res="tx0.1v3" >
     <maxblocks >3</maxblocks>
     <bsize_x   >72</bsize_x>
